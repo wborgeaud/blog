@@ -1,0 +1,12 @@
+{
+    "blogtitle": "William Borgeaud's blog",
+    "blogsubtitle": "A blog on math, crypto, hacking, coding and more.",
+    "posts": [
+        {
+            "date": "2019-11-14",
+            "title": "Use Rust in React Native through WebAssembly",
+            "path": "rust-wasm-react-native.html"
+        }
+    ]
+
+}
