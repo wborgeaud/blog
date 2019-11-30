@@ -7,4 +7,5 @@ A blog on math, crypto, hacking, coding and more.
 
 
 ## Posts
+### [Understanding Verfiable Delay Functions (with a Rust implementation)](./posts/understanding-vdfs.html)
 ### [Use Rust in React Native through WebAssembly](./posts/rust-wasm-react-native.html)
