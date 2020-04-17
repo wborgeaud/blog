@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cryptography on wborgeaud</title>
+    <link>https://wborgeaud.github.io/tags/cryptography/</link>
+    <description>Recent content in cryptography on wborgeaud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 16 Apr 2020 13:57:25 -0700</lastBuildDate>
+    
+	<atom:link href="https://wborgeaud.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Membership proofs from polynomial commitments</title>
+      <link>https://wborgeaud.github.io/posts/membership-proofs-from-polynomial-commitments/</link>
+      <pubDate>Thu, 16 Apr 2020 13:57:25 -0700</pubDate>
+      
+      <guid>https://wborgeaud.github.io/posts/membership-proofs-from-polynomial-commitments/</guid>
+      <description>$$ \def\com{\mathbf{com}} $$
+Recently, Dan Boneh, Ben Fisch, Ariel Gabizon, and Zac Williamson (BFGW) published a writeup showing how to create range proofs from polynomial commitments. As a mental exercise, I wanted to see how to use polynomial commitments to create membership proofs instead. Membership proofs can be seen as a generalization of range proofs, if certain homomorphic properties hold (that&amp;rsquo;s something I learned first from this article). For example for Pedersen commitments, we have:</description>
+    </item>
+    
+  </channel>
+</rss>

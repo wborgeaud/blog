@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on wborgeaud</title>
+    <link>https://wborgeaud.github.io/posts/</link>
+    <description>Recent content in Posts on wborgeaud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 16 Apr 2020 13:57:25 -0700</lastBuildDate>
+    
+	<atom:link href="https://wborgeaud.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Membership proofs from polynomial commitments</title>
+      <link>https://wborgeaud.github.io/posts/membership-proofs-from-polynomial-commitments/</link>
+      <pubDate>Thu, 16 Apr 2020 13:57:25 -0700</pubDate>
+      
+      <guid>https://wborgeaud.github.io/posts/membership-proofs-from-polynomial-commitments/</guid>
+      <description>$$ \def\com{\mathbf{com}} $$
+Recently, Dan Boneh, Ben Fisch, Ariel Gabizon, and Zac Williamson (BFGW) published a writeup showing how to create range proofs from polynomial commitments. As a mental exercise, I wanted to see how to use polynomial commitments to create membership proofs instead. Membership proofs can be seen as a generalization of range proofs, if certain homomorphic properties hold (that&amp;rsquo;s something I learned first from this article). For example for Pedersen commitments, we have:</description>
+    </item>
+    
+    <item>
+      <title>Understanding Verifiable Delay Functions (with a Rust implementation)</title>
+      <link>https://wborgeaud.github.io/posts/understanding-vdfs/</link>
+      <pubDate>Sat, 30 Nov 2019 13:57:25 -0700</pubDate>
+      
+      <guid>https://wborgeaud.github.io/posts/understanding-vdfs/</guid>
+      <description>I have been reading about Verifiable Delay Functions (VDF) recently and wanted to write a short post explaining what they are and what they can be used for. This post relies mainly on the papers: Efficient verifiable delay functions, Wesolowski and A Survey of Two Verifiable Delay Functions, Boneh et al. I also recommend this podcast with Joseph Bonneau.
+Definition A VDF is a function $f_T: \mathcal{X} \to \mathcal{Y}$ that takes a long time to compute but is fast to verify.</description>
+    </item>
+    
+    <item>
+      <title>Use Rust in React Native through WebAssembly</title>
+      <link>https://wborgeaud.github.io/posts/rust-wasm-react-native/</link>
+      <pubDate>Thu, 14 Nov 2019 13:57:25 -0700</pubDate>
+      
+      <guid>https://wborgeaud.github.io/posts/rust-wasm-react-native/</guid>
+      <description>This post shows how to use Rust functions in a React Native project through WebAssembly. I struggled quite a bit to find an easy way to make it work, so I thought I&amp;rsquo;d share my findings. You can find the code for this post here.
+Here&amp;rsquo;s the TLDR:
+ Create a wasm-pack project exposing the Rust functions you want to export. Serve a web page exposing these functions through message events.</description>
+    </item>
+    
+  </channel>
+</rss>
