@@ -1,4 +1,4 @@
-baseurl = "https://wborgeaud.github.io"
+baseurl = "https://solvable.group"
 title = "wborgeaud"
 theme = "hugo-coder"
 languagecode = "en"
@@ -16,7 +16,7 @@ canonifyurls = true
 [params]
     author = "William Borgeaud"
     info = "Crypto, Math and more"
-    description = "John Doe's personal website"
+    description = "William Borgeaud's personal website"
     keywords = "blog,personal"
     avatarurl = "images/avatar.jpg"
 
@@ -31,6 +31,8 @@ canonifyurls = true
     rtl = false
 
     math = true
+
+    staticDir = ["static"]
 
 # Social links
 [[params.social]]
