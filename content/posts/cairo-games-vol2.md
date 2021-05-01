@@ -1,5 +1,5 @@
 ---
-title: "Cairo Games Vol 2: Solutions"
+title: "Cairo Games Vol 2: Writeup"
 date: 2021-04-19
 description: ""
 slug: ""

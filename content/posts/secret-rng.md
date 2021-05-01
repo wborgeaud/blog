@@ -1,5 +1,5 @@
 ---
-title: "Donjon CTF Writup: Secret RNG"
+title: "Donjon CTF Writeup: Secret RNG"
 date: 2020-10-31T03:57:25-07:00
 description: ""
 slug: ""
