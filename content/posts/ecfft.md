@@ -194,8 +194,6 @@ Once we have these precomputed data, the algorithms only use basic operations on
 
 Therefore, the actual algorithms can easily be implemeneted in fast languages like C++ or Rust, without having to implement all the elliptic curve and isogenies machinery in these languages.
 
-If I find the time, I'll try doing exactly that in Rust.
-
 
 
 [^1]: See section 4.2 of the paper for a more careful choice of the coset. A random one is fine with our parameters.
