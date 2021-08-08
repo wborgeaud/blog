@@ -52,7 +52,7 @@ The public input is $\com_f$ and $S$. The protocol then goes as follows:
 
 Let $z=\sum_{i=0}^{l-1}z_i2^i\in [0, 2^l)$ with $z_i\in [0,2)$ for all $i$. Using the membership proof protocol above, we get the following protocol:
 
-1. The Prover builds linear polynomials $f_i(X)$ with $f_i(0)=z_i$ for all $i\in[0,l)$ and $\sum_{i=0}^{l-1}f_i(X) = f(X)$. He then sends $\\{\com_{f_i}\\}_{i=0}^{l-1}$ to the Verifier, and set $\com_f = \prod_{i=0}^{l-1}\com_{f_i}^{2^i}$ (where we use multiplicative notation in the group).
+1. The Prover builds linear polynomials $f_i(X)$ with $f_i(0)=z_i$ for all $i\in[0,l)$ and $\sum_{i=0}^{l-1}f_i(X)\cdot 2^i = f(X)$. He then sends $\\{\com_{f_i}\\}_{i=0}^{l-1}$ to the Verifier, and set $\com_f = \prod_{i=0}^{l-1}\com_{f_i}^{2^i}$ (where we use multiplicative notation in the group).
 2. The Verifier checks that $\com_f = \prod_{i=0}^{l-1}\com_{f_i}^{2^i}$, where $\com_f$ is the public commitment to $z$. 
 3. The Prover and Verifier run the membership proof protocol on $\\{\com_{f_i}\\}_{i=0}^{l-1}$ with $S=\\{0, 1\\}$.
 
@@ -61,3 +61,6 @@ Let $z=\sum_{i=0}^{l-1}z_i2^i\in [0, 2^l)$ with $z_i\in [0,2)$ for all $i$. Usin
 - The protocol works *mutatis mutandis* in an arbitrary base $u$. As $u$ gets larger, the Prover and Verifier time increase, but the proof length decreases.
 - The proof length is $4l$ group elements and $2l$ field elements. This is very bad. In comparison, the BFGW scheme has constant proof length and Bulletproofs have logarithmic proof length. There is maybe a way to reduce the proof length to logarithmic size, but I think constant size is impossible without adding more structure (as BFGW does with roots of unity).
 - The naive protocol of proving $z\in [0,u)$ by performing a membership proof on the set $[0,u)$ has constant size but very bad Prover and Verifier time. Nevertheless, if $u$ is small this might be a viable succinct range proof (but still worse than BFGW). 
+
+
+*Thanks to Alin Tomescu for spotting a typo in an earlier version of this post.*
