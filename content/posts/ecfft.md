@@ -14,11 +14,11 @@ $$
 This post is about [a recent paper](https://arxiv.org/abs/2107.08473) by Eli Ben-Sasson, Dan Carmon, Swastik Kopparty and David Levit. In this paper the authors present an amazing new generalization of the classic FFT algorithm that works in all finite fields. This post will give an overview of the algorithm and a simple implementation in Sage. I highly recommend reading the paper for more details and background. 
 
 ## The classic FFT algorithm
-Let $p$ be a prime number, $n=2^k$ with $n \mid p-1$, $\langle w \rangle = H < \F_p^*$ a subgroup of size $n$. The classic FFT algorithm can be used to interpolate a polynomial $P(X)=\sum_{i=0}^n a_i X^i$ of degree $<n$ on $H$ in $O(n\log n)$. Note that the naive algorithm of evaluating $P$ at every point of $H$ takes $O(n^2)$ operations.\
+Let $p$ be a prime number, $n=2^k$ with $n \mid p-1$, $\langle w \rangle = H < \F_p^*$ a subgroup of size $n$. The classic FFT algorithm can be used to evaluate a polynomial $P(X)=\sum_{i=0}^n a_i X^i$ of degree $<n$ on $H$ in $O(n\log n)$. Note that the naive algorithm of evaluating $P$ at every point of $H$ takes $O(n^2)$ operations.\
 The FFT works by writing $P$ as 
 $$P(X) = P_0(X^2) + XP_1(X^2)$$
 where $P_0, P_1$ are the polynomials of degree $< n/2$ of even and odd coefficients of $P$. \
-Thus, given the interpolation of $P_0$ and $P_1$ on $H^2$, we can recover the interpolation of $P$ on $H$ with $O(n)$ operations.
+Thus, given the evaluation of $P_0$ and $P_1$ on $H^2$, we can recover the evaluation of $P$ on $H$ with $O(n)$ operations.
 
 Now the crucial thing to note is that $H^2$ has half the size of $H$ since $H = -H$. Therefore, if we denote by $F$ the running time of the FFT, we have the following recurrence relation
 
@@ -101,7 +101,7 @@ P(X) = (P_0(\psi(X)) + XP_1(\psi(X)))v(X)^{n/2-1}
 $$
 See Appendix A of the paper for a proof. The idea is to prove that the linear map $(P_0, P_1) \mapsto P$ from pairs of polynomials of degree $<n/2$ to polynomials of degree $<n$ is injective, and thus bijective since its domain and codomain have the same dimension as $\F_p$-vector spaces.
 
-Computing the polynomials $P_0,P_1$ is not as straightforward as in the classic FFT. However, it is easy to go from the interpolation of $P$ on $L$ to the interpolations of $P_0$ and $P_1$ on $\psi(L)$, and vice versa.\
+Computing the polynomials $P_0,P_1$ is not as straightforward as in the classic FFT. However, it is easy to go from the evaluation of $P$ on $L$ to the evaluations of $P_0$ and $P_1$ on $\psi(L)$, and vice versa.\
 Indeed, given $s_0, s_1\in L$ with $\psi(s_0)=\psi(s_1)=t\in \psi(L)$, we have the following linear relation (letting $q=n/2 -1$)
 
 $$
@@ -120,7 +120,7 @@ P_1(t)
 $$
 The matrix can be seen to be inversible, therefore we can easily go from $(P(s_0),P(s_1))$ to $(P_0(t), P_1(t))$ and back. This gives the following efficient correspondance that we'll use later:
 
-$$\text{Interpolation of $P$ on $L$ $\longleftrightarrow$ Interpolations of $P_0, P_1$ on $\psi(L)$.}$$
+$$\text{Evaluation of $P$ on $L$ $\longleftrightarrow$ Evaluations of $P_0, P_1$ on $\psi(L)$.}$$
 
 What's more, the matrix doesn't depend on $P$, so we can precompute it and reuse it for all instantiations of the ECFFT.
 ```sage
@@ -140,11 +140,11 @@ The final piece of the puzzle is the EXTEND operation. Let $S, S'$ be the elemen
 S = [L[i] for i in range(0, n, 2)]
 S_prime = [L[i] for i in range(1, n, 2)]
 ```
-Given the interpolation of a polynomial $Q$ of degree $<n/2 -1$ on $S$, the EXTEND operation computes the interpolation of $Q$ on $S'$. The main result of the paper is that there is an $O(n\log n)$ algorithm for EXTEND. Note that a naive algorithm that would recover the coefficients of $Q$ by Lagrange interpolation on $S$ and then evaluate on $S'$ takes $O(n^2)$.
+Given the evaluation of a polynomial $Q$ of degree $<n/2 -1$ on $S$, the EXTEND operation computes the evaluation of $Q$ on $S'$. The main result of the paper is that there is an $O(n\log n)$ algorithm for EXTEND. Note that a naive algorithm that would recover the coefficients of $Q$ by Lagrange interpolation on $S$ and then evaluate on $S'$ takes $O(n^2)$.
 
 The algorithm works as follows.\
-If $\\#S = \\#S' = 1$, $Q$ is constant and the interpolation of $Q$ on $S$ and $S'$ is the same. \
-Otherwise, deduce from the interpolation of $Q$ on $S$ the interpolations of $Q_0,Q_1$ on $\psi(S)$, as in the previous section. Then apply the EXTEND operation twice to get the interpolations of $Q_0,Q_1$ on $\psi(S')$. Finally, recover the interpolation of $Q$ on $S'$ as in the previous section.
+If $\\#S = \\#S' = 1$, $Q$ is constant and the evaluation of $Q$ on $S$ and $S'$ is the same. \
+Otherwise, deduce from the evaluation of $Q$ on $S$ the evaluations of $Q_0,Q_1$ on $\psi(S)$, as in the previous section. Then apply the EXTEND operation twice to get the evaluations of $Q_0,Q_1$ on $\psi(S')$. Finally, recover the evaluation of $Q$ on $S'$ as in the previous section.
 
 ```sage
 def extend(Q_evals, S, S_prime, matrices, inverse_matrices):
@@ -174,11 +174,11 @@ def extend(Q_evals, S, S_prime, matrices, inverse_matrices):
 
 The recurrence relation for the running time is the same as in the classic FFT and gives a running time of $O(n\log n)$.
 
-### Interpolating polynomials on $L$
+### Evaluating polynomials on $L$
 The algorithm for the EXTEND operation given in the last section is the building block for many efficient algorithms given in the paper.\
-One of them is an algorithm for the ENTER operation, which computes the interpolation of a polynomial $P$ of degree $<n$ on $L$. This is analogous to what we did in the classic FFT.
+One of them is an algorithm for the ENTER operation, which computes the evaluation of a polynomial $P$ of degree $<n$ on $L$. This is analogous to what we did in the classic FFT.
 
-The algorithm is very simple. Decompose $P(X)$ into its low and high coefficient $U(X) + X^{n/2}V(X)$. Call ENTER on $U$ and $V$ on $S$ to get the interpolations of $U,V$ on $S$. Then call EXTEND twice to get the interpolations of $U,V$ on $S'$. Since $L = S \cup S'$, we have the interpolation of $U,V$ on $L$ and can deduce the interpolation of $P$ on $L$.
+The algorithm is very simple. Decompose $P(X)$ into its low and high coefficient $U(X) + X^{n/2}V(X)$. Call ENTER on $U$ and $V$ on $S$ to get the evaluations of $U,V$ on $S$. Then call EXTEND twice to get the evaluations of $U,V$ on $S'$. Since $L = S \cup S'$, we have the evaluation of $U,V$ on $L$ and can deduce the evaluation of $P$ on $L$.
 
 Note that the recurrence relation for the running time is now 
 
