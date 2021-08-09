@@ -57,8 +57,7 @@ def find_curve(n):
 n = 2^12
 E = find_curve(n)
 ```
-It can find a curve for $n=2^{12}$ in around an hour. (If someone know a faster implementation of Schoof's algorithm, please let me know!) \
-Here's the curve I found
+It can find a curve for $n=2^{12}$ in around an hour. Here's the curve I found
 
 $$
 E: y^2 = x^3 + x + 641632526086088189863104799840287255425991771106608433941469413117059106896
@@ -94,15 +93,19 @@ u, v = psi.numerator(), psi.denominator()
 From this we can get a new elliptic curve $E'$, which is the codomain of $\phi$, a new coset $\phi(H)$, and a new subset of $\F_p$ given by $\psi(L)$.
 
 ### Decomposing polynomials on $L$
+In the classic FFT, we were able to write the evaluation of $P$ on $H$ in terms of the evaluations of the two smaller polynomials $P_0,P_1$ on the smaller set $H^2$.\
+We now want to do the same by replacing $H$ with $L$, $H^2$ with $\psi(L)$, and the squaring operation with $\psi$.
+
+
 Let $P$ be a polynomial of degree $<n$. Then there exist polynomials $P_0, P_1$ of degree $< n/2$ such that
 
 $$
 P(X) = (P_0(\psi(X)) + XP_1(\psi(X)))v(X)^{n/2-1}
 $$
-See Appendix A of the paper for a proof. The idea is to prove that the linear map $(P_0, P_1) \mapsto P$ from pairs of polynomials of degree $<n/2$ to polynomials of degree $<n$ is injective, and thus bijective since its domain and codomain have the same dimension as $\F_p$-vector spaces.
+See Appendix A of the paper for a proof. The idea of the proof is that the linear map $(P_0, P_1) \mapsto P$ from pairs of polynomials of degree $<n/2$ to polynomials of degree $<n$ is injective, and thus bijective since its domain and codomain have the same dimension as $\F_p$-vector spaces.
 
 Computing the polynomials $P_0,P_1$ is not as straightforward as in the classic FFT. However, it is easy to go from the evaluation of $P$ on $L$ to the evaluations of $P_0$ and $P_1$ on $\psi(L)$, and vice versa.\
-Indeed, given $s_0, s_1\in L$ with $\psi(s_0)=\psi(s_1)=t\in \psi(L)$, we have the following linear relation (letting $q=n/2 -1$)
+Indeed, given $s_0, s_1\in L$ with $\psi(s_0)=\psi(s_1)=t\in \psi(L)$, by writing the above formula for $P(X)$ at $X=s_0,s_1$ we get the following linear relation (letting $q=n/2 -1$)
 
 $$
 \begin{bmatrix}
@@ -118,7 +121,7 @@ P_0(t) \\\\\\
 P_1(t)
 \end{bmatrix} 
 $$
-The matrix can be seen to be inversible, therefore we can easily go from $(P(s_0),P(s_1))$ to $(P_0(t), P_1(t))$ and back. This gives the following efficient correspondance that we'll use later:
+The matrix can be seen to be inversible, therefore we can easily go from $(P(s_0),P(s_1))$ to $(P_0(t), P_1(t))$ and back. This gives the following efficient correspondence that we'll use later:
 
 $$\text{Evaluation of $P$ on $L$ $\longleftrightarrow$ Evaluations of $P_0, P_1$ on $\psi(L)$.}$$
 
@@ -140,7 +143,7 @@ The final piece of the puzzle is the EXTEND operation. Let $S, S'$ be the elemen
 S = [L[i] for i in range(0, n, 2)]
 S_prime = [L[i] for i in range(1, n, 2)]
 ```
-Given the evaluation of a polynomial $Q$ of degree $<n/2 -1$ on $S$, the EXTEND operation computes the evaluation of $Q$ on $S'$. The main result of the paper is that there is an $O(n\log n)$ algorithm for EXTEND. Note that a naive algorithm that would recover the coefficients of $Q$ by Lagrange interpolation on $S$ and then evaluate on $S'$ takes $O(n^2)$.
+Given the evaluation of a polynomial $Q$ of degree $<n/2$ on $S$, the EXTEND operation computes the evaluation of $Q$ on $S'$. The main result of the paper is that there is an $O(n\log n)$ algorithm for EXTEND. Note that a naive algorithm that would recover the coefficients of $Q$ by Lagrange interpolation on $S$ and then evaluate on $S'$ takes $O(n^2)$.
 
 The algorithm works as follows.\
 If $\\#S = \\#S' = 1$, $Q$ is constant and the evaluation of $Q$ on $S$ and $S'$ is the same. \
@@ -188,11 +191,115 @@ $$
 since we have to call EXTEND in the recursion step. Therefore the running time $F(n) = O(n\log^2 n)$ is slightly worse than for the classic FFT.
 
 ## Running it outside of Sage
-As this post (hopefully) shows, these algorithms are very simple to implement in a computer algebra system like Sage. However, Sage being awfully slow, these quick implementations are far from fast. \
+As this post (hopefully) shows, these algorithms are very simple to implement in a computer algebra system like Sage. However, Sage being awfully slow, these implementations are far from fast. \
 The cool thing about these algorithms is that for a given field $\F_p$, we can precompute all the necessary data in Sage: all the sets $L, S, S'$ and the (inverse) matrices used in the EXTEND algorithm.\
 Once we have these precomputed data, the algorithms only use basic operations on $\F_p$, i.e., additions and multiplications. 
 
-Therefore, the actual algorithms can easily be implemeneted in fast languages like C++ or Rust, without having to implement all the elliptic curve and isogenies machinery in these languages.
+Therefore, the actual algorithms can easily be implemeneted in fast languages like C++ or Rust, without having to implement all the elliptic curve and isogeny machinery in these languages.
+
+
+## Final code
+Here is the final code that computes EXTEND for our choice of $\F_p$. It can also be found [here](https://github.com/wborgeaud/ecfft-post/blob/master/ecfft.sage).
+```sage
+# p is the size of the base field of the curve Secp256k1
+p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
+F = GF(p)
+# See the post on how to find a and b such that 2^12 divides the order of E.
+a, b = 1, 641632526086088189863104799840287255425991771106608433941469413117059106896
+E = EllipticCurve(F, [a,b])
+
+log_n = 12
+n = 2^log_n
+assert E.order() % n == 0
+g = E.gens()[0]
+G = (g.order()//n) * g
+assert G.order() == n
+
+
+R = E.random_element()
+H = [R + i*G for i in range(2^log_n)]
+L = [h.xy()[0] for h in H]
+S = [L[i] for i in range(0, n, 2)]
+S_prime = [L[i] for i in range(1, n, 2)]
+
+def precompute(log_n, S, S_prime, E):
+    Ss = {}
+    Ss_prime = {}
+    matrices = {}
+    inverse_matrices = {}
+    for i in range(log_n, -1, -1):
+        n = 1 << i
+        nn = n // 2
+
+        Ss[n] = S
+        Ss_prime[n] = S_prime
+        matrices[n] = []
+        inverse_matrices[n] = []
+
+        for iso in E.isogenies_prime_degree(2):
+            psi = iso.x_rational_map()
+            if len(set([psi(x) for x in S]))==nn:
+                break
+        v = psi.denominator()
+        q = nn - 1
+        for j in range(nn):
+            s0, s1 = S[j], S[j + nn]
+            assert psi(s0) == psi(s1)
+            M = Matrix(F, [[v(s0)^q,s0*v(s0)^q],[v(s1)^q, s1*v(s1)^q]])
+            inverse_matrices[n].append(M.inverse())
+
+            s0, s1 = S_prime[j], S_prime[j + nn]
+            assert psi(s0) == psi(s1)
+            M = Matrix(F, [[v(s0)^q,s0*v(s0)^q],[v(s1)^q, s1*v(s1)^q]])
+            matrices[n].append(M)
+
+        S = [psi(x) for x in S[:nn]]
+        S_prime = [psi(x) for x in S_prime[:nn]]
+        E = iso.codomain()
+
+    return Ss, Ss_prime, matrices, inverse_matrices
+
+# Precompute the data needed to compute EXTEND_S,S'
+Ss, Ss_prime, matrices, inverse_matrices = precompute(log_n-1, S, S_prime, E)
+
+def extend(P_evals):
+    n = len(P_evals)
+    nn = n // 2
+    if n == 1:
+        return P_evals
+    S = Ss[n]
+    S_prime = Ss_prime[n]
+    P0_evals = []
+    P1_evals = []
+    for j in range(nn):
+        s0, s1 = S[j], S[j + nn]
+        y0, y1 = P_evals[j], P_evals[j + nn]
+        Mi = inverse_matrices[n][j]
+        p0, p1 = Mi * vector([y0, y1])
+        P0_evals.append(p0)
+        P1_evals.append(p1)
+
+    P0_evals_prime = extend(P0_evals)
+    P1_evals_prime = extend(P1_evals)
+
+    ansL = []
+    ansR = []
+    for M, p0, p1 in zip(matrices[n], P0_evals_prime, P1_evals_prime):
+        v = M * vector([p0, p1])
+        ansL.append(v[0])
+        ansR.append(v[1])
+    return ansL + ansR
+
+# Generate a random polynomial for testing
+R.<X> = F[]
+P = sum(F.random_element() * X^i  for i in range(1<<(log_n - 1)))
+
+# Evaluate P on S
+P_evals = [P(x) for x in S]
+# result holds the evaluation of P on S'
+result = extend(P_evals)
+assert result == [P(x) for x in S_prime]
+```
 
 
 
