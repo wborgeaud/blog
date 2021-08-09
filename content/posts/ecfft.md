@@ -9,8 +9,6 @@ $$
 \def\F{\mathbb{F}}
 $$
 
-# The ECFFT algorithm
-
 This post is about [a recent paper](https://arxiv.org/abs/2107.08473) by Eli Ben-Sasson, Dan Carmon, Swastik Kopparty and David Levit. In this paper the authors present an amazing new generalization of the classic FFT algorithm that works in all finite fields. This post will give an overview of the algorithm and a simple implementation in Sage. I highly recommend reading the paper for more details and background. 
 
 ## The classic FFT algorithm
