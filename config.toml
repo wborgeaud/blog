@@ -15,7 +15,7 @@ canonifyurls = true
 
 [params]
     author = "William Borgeaud"
-    info = "Crypto, Math and more"
+    info = ""
     description = "William Borgeaud's personal website"
     keywords = "blog,personal"
     avatarurl = "images/avatar.jpg"

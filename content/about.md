@@ -1,6 +1,7 @@
 +++
-title = "About me"
+title = "About"
 slug = "about"
 +++
 
-Cryptographer at [Mir Protocol](https://mirprotocol.org).
+Interested in mathematics and cryptography.
+
