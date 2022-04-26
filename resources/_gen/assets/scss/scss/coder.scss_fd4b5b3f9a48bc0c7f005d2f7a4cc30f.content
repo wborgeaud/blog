@@ -183,7 +183,8 @@ figure {
   margin-top: 1.6rem;
   margin-bottom: 3.2rem; }
   .content article {
-    max-width: 70.0rem; }
+    max-width: 70.0rem;
+    margin: 0 auto; }
     .content article header {
       margin-top: 6.4rem;
       margin-bottom: 3.2rem; }
