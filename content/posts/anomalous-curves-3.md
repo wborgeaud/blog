@@ -89,7 +89,7 @@ This theorem has the nice following corollary that implies the second result we 
 
 We now see how the group structure on elliptic curves induces formal group laws.
 
-Let $E: y^2 + a_1xy +a_3y = x^3 + a_2x^2 + a_4x + a_6$ be an elliptic curve over a field $K$. Let $K[E]\_\mathcal{O}$  be the local ring without poles at $\O$. Let $\M_\O$ be the maximal ideal of $K[E]_\O$ given by functions vanishing at $\O$. Then $\M_\O=(z)$ for some <i>uniformizer</i> $z$ (which exists by properties of DVR). The completion of $K[E]_\O$ at $\M_\O$ is isomorphic to $K[[z]]$. We want to find a characterization of the group structure on $E$ inside this ring $K[[z]]$ in terms of a formal group law.
+Let $E: y^2 + a_1xy +a_3y = x^3 + a_2x^2 + a_4x + a_6$ be an elliptic curve over a field $K$. Let $K[E]\_\mathcal{O}$  be the local ring without poles at $\O$. Let $\M_\O$ be the maximal ideal of $K[E]\_{\O}$ given by functions vanishing at $\O$. Then $\M_\O=(z)$ for some <i>uniformizer</i> $z$ (which exists by properties of DVR). The completion of $K[E]\_\O$ at $\M_\O$ is isomorphic to $K[[z]]$. We want to find a characterization of the group structure on $E$ inside this ring $K[[z]]$ in terms of a formal group law.
 
 We use the change of variable: $z = -\frac x y$, $w = -\frac 1 y$. In this coordinate system, $\O=(0,0)$ and $z$ is a uniformizer of $\M_\O$.  The Weierstrass equation becomes
 $$
