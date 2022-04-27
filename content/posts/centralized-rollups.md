@@ -6,7 +6,7 @@ slug: ""
 tags: [rollups]
 ---
 
-Common wisdom is that rollups should be decentralized. In fact, most rollups have decentralization of sequencers/validators/provers on their roadmap. In this post, I argue that fully centralized rollups are viable and secure.
+Conventional wisdom is that rollups should be decentralized. In fact, most rollups have decentralization of sequencers/validators/provers on their roadmap. In this post, I argue that fully centralized rollups are viable and secure.
 
 ## What does a centralized rollup look like?
 In a centralized rollup, a single actor controls sequencing and block production. Users send transactions directly to this actor, i.e, there is no public mempool. This actor then constructs a block with some of the transactions it has received and pushes them to L1, along with a state transition validity proof in the case of a zk-rollup. 
