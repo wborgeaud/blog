@@ -55,12 +55,18 @@ The last section was about malicious MEV and how a centralized rollup solves it.
 
 A centralized sequencer could easily extract such MEV and make a profit along the way. These profits wouldn’t be made on the back of users, and would actually help the network. 
 
-Moreover, the rollups could reinvest the profits into the network by: reducing fees, public good funding, buyback+burn of tokens (if the rollup has a token), or airdropping users. How the profits are used could be decided using some governance system.
+Moreover, the rollup could reinvest the profits in the network, for example by:
+- reducing fees,
+- public good funding,
+- buyback+burn of tokens (if the rollup has a token),
+- airdropping users.
 
-Now this MEV extraction would be totally optional. Some users might be uneasy with the rollup performing arbitrages and liquidations, and the rollup would function perfectly well without performing such extractions. It is, however, interesting to ask if the value behind such extractions would not be better used by the rollup than by some profit-seeking MEV searchers. I would argue that the average user, who probably doesn’t run an arbitrage or liquidation bot, would benefit more from the centralized actor extracting this kind of MEV and reinvesting it in the network. 
+ How the profits are used could be decided using some governance system.
+
+Now this MEV extraction would be totally optional. Some users might be uncomfortable with the rollup performing arbitrages and liquidations, and the rollup would function perfectly well without performing such extractions. It is, however, interesting to ask if the value behind such extractions would not be better used by the rollup than by some profit-seeking MEV searchers. I think the average user, who doesn’t run an arbitrage or liquidation bot, would benefit more from the centralized sequencer extracting this kind of MEV and reinvesting it in the network. 
 
 ## Conclusion
-It is kind of easy to just sweep every issue with centralized rollups under the escape hatch rug. In practice, having to leave a malicious centralized rollup would be a massive annoyance (note that it would also be easy to fork the rollup in such cases). But I think the upsides are significant and cannot be ignored.
+It is kind of easy to just sweep every issue with centralized rollups under the escape hatch rug. In practice, having to leave a malicious/malfunctioning centralized rollup would be a massive annoyance (note that it would also be easy to fork the rollup in such cases). But I think the upsides are significant and cannot be ignored.
 
 Anyway, I think this is an interesting avenue to explore and I wouldn’t be surprised if a centralized rollup ends up winning the coming rollup wars. 
 
