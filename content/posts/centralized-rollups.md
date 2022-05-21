@@ -48,7 +48,7 @@ If you really want a token, you can always have a governance token to vote on ne
 The centralized rollup could vow to not extract malicious MEV, like sandwich attacks, from users. It would be easy to detect if the sequencer does perform such extraction and, as with censoring, we’d see users leave the rollup if that were the case. This is obviously not possible in a decentralized system. 
 Therefore a centralized rollup could have much better UX for users, in the form of better DEX prices. 
 
-Note that this is not only a theoretical argument, as we see users on Ethereum do similar things by sending their transactions to centralized relayers (e.g. Flashbots) to avoid getting sandwiched. 
+Note that this is not only a theoretical argument, as we see users on Ethereum do similar things by sending their transactions to centralized relayers (e.g. Flashbots or Ethermine) to avoid getting sandwiched. 
 
 ### For-profit rollup
 The last section was about malicious MEV and how a centralized rollup solves it. What about beneficial MEV like arbitrages (keeping prices efficient on the network) and liquidations (helping borrowing platforms stay solvent)? 
