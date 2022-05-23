@@ -154,13 +154,29 @@ table tr:first-child th {
 table tr:last-child td {
   border-bottom: 0;
 }
-table tr td:first-child,
+// table tr td:first-child,
 table tr th:first-child {
   border-left: 0;
 }
 table tr td:last-child,
 table tr th:last-child {
   border-right: 0;
+}
+
+table.nohead {
+  font-size: 1.6rem;
+}
+
+table.nohead thead {
+  display: none;
+}
+
+table.nohead td:empty {
+  display: none;
+}
+
+table.nohead td {
+  padding: 1rem;
 }
 
 img {

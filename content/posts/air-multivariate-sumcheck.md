@@ -73,4 +73,35 @@ The choice of $\sigma$ can dramatically impact the expressiveness of the arithme
 Assuming for the moment that $\sigma$ is a permutation, a measure of expressiveness can be the size of the largest cycle of $\sigma$, when seeing the permutation as a [product of cycles](https://en.wikipedia.org/wiki/Permutation#Cycle_notation). Interpreting an AIR as the repeated application of a function, the size of the largest cycle gives the maximum number of times the function can be applied.
 
 ## Back to the multivariate setting
-In the multivariate setting, the row domain is $R = \\{0, 1\\}^v$. So to get an EAR, we first need to set an endomorphism $\sigma : \\{0, 1\\}^v \to \\{0, 1\\}^v$. As noted previously, to make the proving system work, we need a $\sigma$ that can be extended to some $\bar{\sigma}: \mathbb{F}^v \to \mathbb{F}^v$ such that $(\sigma \tilde{f})z = \tilde{f}(\bar{\sigma} z)$ for all $z \in \mathbb{F}^v$ and function $f: \\{0, 1\\}^v \to \mathbb{F}$.
+In the multivariate setting, the row domain is $R = \\{0, 1\\}^v$. So to get an EAR, we first need to set an endomorphism $\sigma : \\{0, 1\\}^v \to \\{0, 1\\}^v$. As noted previously, to make the proving system work, we need a $\sigma$ that can be extended to some $\bar{\sigma}: \mathbb{F}^v \to \mathbb{F}^v$ such that $(\sigma \tilde{f})z = \tilde{f}(\bar{\sigma} z)$ for all $z \in \mathbb{F}^v$ and functions $f: \\{0, 1\\}^v \to \mathbb{F}$.
+
+A set of endomorphisms of $\mathbb{F}^v$ (which are actually permutations) satifying this condition is given by compositions of bit-switches and coordinate permutations. Formally, they are given by
+$$
+L_v = \\{ \tau \theta \ \mid \ \tau \in S_v, \ \theta \in (\mathbb{Z}/2\mathbb{Z})^v \\},
+$$
+where $S_v$ is the symmetric group on $v$ elements acting on $\mathbb{F}^v$ by permuting coordinates and $\theta = (\theta_1,\dots,\theta_v)$ acts on $x = (x_1, \dots, x_v)$ coordinate-wise by sending $x_i$ to $x_i$ if $\theta_i = 0$ and to $1-x_i$ if $\theta_i = 1$. It is clear that every element of $L_v$ restricts to an endomorphism on $\\{0, 1\\}^v$ and can be efficiently computed in $O(v)$ time.
+
+The main "result" of this note can thus be stated as follows
+
+> For every $\sigma \in L_v$ and $C\in \mathbb{F}[X_1,\dots,X_{2w}]$, there is an efficient proving system for the EAR on $n = 2^v$ rows, $w$ columns, and constraint $C$. 
+
+###### How good are these permutations?
+The sad thing is that the permutations in $L_v$ are not very good, measured in terms of their maximum cycle length. Denote by $M(v)$ the maximum cycle length over elements of $L_v$ and denote by $N(v)$ the number of length $M(v)$ cycles in a permutation achieving this maximum. Experiments give the following values of $M$ and $N$:
+
+{{<table "table table-striped table-bordered nohead">}}
+| | | | | | | | | | | | 
+|------|---|-|-|-|-|-|-|-|-|-|-
+$v$ | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19  
+$M(v)$ | 60 | 60 | 120 | 120 | 168 | 210 | 280 | 420 | 420 |  840
+$N(v)$ | 12 | 30 | 24 | 48 | 72 | 108 | 216 | 216 | 540 |  432
+$M(v)\cdot N(v)$ | 720 | 1800 | 2880 | 5760 | 12096 | 22680 | 60480 | 90720 | 226800 |  362880
+$n=2^v$ | 1024 | 2048 | 4096 | 8192 | 16384 | 32768 | 65536 | 131072 | 263144 |  524288
+||||||||||||
+{{</table>}}
+
+So the bad news is that $M(v)$ is much smaller than $n$. The silver lining is there there is a lot of cycles achvieving $M(v)$ and so the number of elements in such cycles $M(v)\cdot N(v)$ is reasonably close to $n$.
+
+###### EARs as "parallel" AIRs?
+This gives the following 
+
+
