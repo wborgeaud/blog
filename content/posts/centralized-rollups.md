@@ -6,7 +6,7 @@ slug: ""
 tags: [rollups]
 ---
 
-Conventional wisdom is that rollups should be decentralized. In fact, most rollups have decentralization of sequencers/validators/provers on their roadmap. In this post, I argue that fully centralized rollups are viable and secure.
+Conventional wisdom is that rollups should be decentralized. In fact, most rollups have decentralization of sequencers/validators/provers on their roadmaps. In this post, I argue that fully centralized rollups are viable and secure.
 
 ## What does a centralized rollup look like?
 In a centralized rollup, a single actor controls sequencing and block production. Users send transactions directly to this actor, i.e, there is no public mempool. This actor then constructs a block with some of the transactions it has received and pushes them to L1, along with a state transition validity proof in the case of a zk-rollup. 
@@ -27,10 +27,10 @@ The solution to censorship is reputation, not decentralization. If a centralized
 
 
 ### Regulatory issues 
-A centralized rollup would be more vulnerable to regulatory pressure than a decentralized system. IANAL so I don’t have clear insight on how serious this concern is. My first thought is that regulators should have enough work with all the scammy things going on in crypto before attacking legitimate use cases like rollups. In any case, centralized rollups are not bound to a given server. In case of regulatory issues, it is trivial to just change the location of the rollup server.
+A centralized rollup would be more vulnerable to regulatory pressure than a decentralized system. It is hard to estimate how serious this concern is. My first thought is that regulators should have enough work with all the scammy things going on in crypto before attacking legitimate use cases like rollups. In any case, centralized rollups are not bound to a given server. In case of regulatory issues, it is trivial to just change the location of the rollup server.
 
 ### Downtime 
-It is inevitable that any centralized system will experience downtime at some point. Many precautions can be taken to reduce the frequency and length of such downtimes, but it wouldn’t be realistic to claim they will never happen. To me this is the only issue with centralized rollups that can’t be fixed without adding some significant overhead. Note that downtimes aren’t particularly risky for users since, as long as the L1 is up, the escape hatch would allow them to leave the L2.
+It is inevitable that any centralized system will experience downtime at some point. Many precautions can be taken to reduce the frequency and length of such downtimes, but it would be unrealistic to claim they will never happen. To me this is the only issue with centralized rollups that cannot be fixed without adding some significant overhead or decentralization. Note that downtimes aren’t particularly risky for users since, as long as the L1 is up, the escape hatch would allow them to leave the L2.
 
 ## Advantages
 
@@ -45,7 +45,7 @@ Sorry VCs but a centralized rollup doesn’t need a token. Case in point, no rol
 If you really want a token, you can always have a governance token to vote on new features for the rollup. But the fact that a token is not inherently needed is definitely a plus.
 
 ### Benevolent sequencer
-The centralized rollup could vow to not extract malicious MEV, like sandwich attacks, from users. It would be easy to detect if the sequencer does perform such extraction and, as with censoring, we’d see users leave the rollup if that were the case. This is obviously not possible in a decentralized system. 
+The centralized rollup could vow not to extract malicious MEV, like sandwich attacks, from users. It would be easy to detect if the sequencer does perform such extraction and, as with censoring, we’d see users leave the rollup if that were the case. This is obviously not possible in a decentralized system. 
 Therefore a centralized rollup could have much better UX for users, in the form of better DEX prices. 
 
 Note that this is not only a theoretical argument, as we see users on Ethereum do similar things by sending their transactions to centralized relayers (e.g. Flashbots or Ethermine) to avoid getting sandwiched. 
@@ -63,10 +63,8 @@ Moreover, the rollup could reinvest the profits in the network, for example by:
 
  How the profits are used could be decided using some governance system.
 
-Now this MEV extraction would be totally optional. Some users might be uncomfortable with the rollup performing arbitrages and liquidations, and the rollup would function perfectly well without performing such extractions. It is, however, interesting to ask if the value behind such extractions would not be better used by the rollup than by some profit-seeking MEV searchers. I think the average user, who doesn’t run an arbitrage or liquidation bot, would benefit more from the centralized sequencer extracting this kind of MEV and reinvesting it in the network. 
+Now this MEV extraction would be totally optional. Some users might be uncomfortable with the rollup having a monopoly on arbitrages and liquidations, and the rollup would function perfectly well without performing such extractions. It is, however, interesting to ask if the value behind such extractions would not be better used by the rollup than by some profit-seeking MEV searchers. I think the average user who doesn’t run an arbitrage or liquidation bot, would benefit more from the centralized sequencer extracting this kind of MEV and reinvesting it in the network. 
 
 ## Conclusion
-It is kind of easy to just sweep every issue with centralized rollups under the escape hatch rug. In practice, having to leave a malicious/malfunctioning centralized rollup would be a massive annoyance (note that it would also be easy to fork the rollup in such cases). But I think the upsides are significant and cannot be ignored.
-
-Anyway, I think this is an interesting avenue to explore and I wouldn’t be surprised if a centralized rollup ends up winning the coming rollup wars. 
+It is kind of easy to just sweep every issue with centralized rollups under the escape hatch rug. In practice, having to leave a malicious/malfunctioning centralized rollup would be a massive annoyance (note that it would also be easy to fork the rollup in such cases). But I think the upsides are significant and should not be ignored.
 
