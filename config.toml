@@ -45,11 +45,6 @@ canonifyurls = true
     icon = "fab fa-twitter fa-2x"
     weight = 3
     url = "https://twitter.com/williamborgeaud/"
-[[params.social]]
-    name = "Linkedin"
-    icon = "fab fa-linkedin fa-2x"
-    weight = 3
-    url = "https://linkedin.com/in/william-borgeaud/"
 
 # Menu links
 [[menu.main]]
