@@ -12,7 +12,7 @@ $$
 \def\C{\mathcal{C}}
 $$
 
-The _Riemann-Roch theorem_ is a fundamental result in the study of curves. It has some nice applications relevant to cryptography which I describe in this post.
+The _Riemann-Roch theorem_ is a fundamental result in the study of curves. In this post, I'll go through some of its applications in cryptography.
 
 ## Divisors and the Riemann-Roch theorem
 
@@ -20,7 +20,7 @@ Let $C$ be an algebraic curve, i.e., a smooth projective variety of dimension on
 
 For functions $0\ne f\in K(C)$ (the function field of the curve), we can define a divisor $div(f) = \sum_{P\in C} ord_P(f) P$ where $ord_P(f)$ is $n>0$ if $f$ has a zero of order $n$ at $P$, $n<0$ if $f$ has a pole of order $-n$ at $P$, $0$ otherwise.
 
-There is a surjective map $Div(C) \to \mathbb{Z}$ called the _degree_ of a divisor and defined by $\deg(\sum_{P\in C}n_P P) = \sum_{P\in C}n_P$. Its kernel is denoted $Div^0(C) = \ker(\deg)$. A standard result is that $div(f) \in Div^0(C)$ for all $f\in \bar{K}(C)$[^2].
+There is a surjective map $Div(C) \to \mathbb{Z}$ called the _degree_ of a divisor and defined by $$\deg(\sum_{P\in C}n_P P) = \sum_{P\in C}n_P.$$ Its kernel is denoted $Div^0(C) = \ker(\deg)$. A standard result is that $div(f) \in Div^0(C)$ for all $f\in \bar{K}(C)$.
 
 We define a partial order on $Div(C)$ by
 
@@ -38,13 +38,13 @@ This set has a structure of $K$-vector space and we denote by $\ell(D)$ its dime
 
 > **Riemann-Roch Theorem:** There is a divisor $K_C$ and an integer $g\geq 0$ such that for all $D\in Div(C)$ $$\ell(D) - \ell(K_C - D) = \deg D - g + 1.$$
 
-The integer $g$ is called the genus of $C$, and the divisor $K_C$ is called a canonical divisor of $C$. There is a rigorous definition of $K_C$ but we won't need it thanks to the following result
+The integer $g$ is called the *genus* of $C$, and the divisor $K_C$ is called a *canonical divisor* of $C$. There is a rigorous definition of $K_C$ but we won't need it thanks to the following result
 
 $$
 \deg D > 2g-2 \implies \ell(K_C - D) = 0.
 $$
 
-So for such divisors $D$ the Riemann-Roch theorem is just $\ell(D) = \deg D - g + 1$.
+So for such divisors $D$, the Riemann-Roch theorem is just $$\ell(D) = \deg D - g + 1.$$
 
 ## Elliptic curves
 
@@ -56,7 +56,7 @@ $$
 E: y^2 + axy + by = x^3 + cx^2 + dx + e,
 $$
 
-for some $a,b,c,d,e \in K$. This is a simple definition but it doesn't give a lot of intuition for what an elliptic curve actually _is_ and it's not at all obvious why we should care about solutions of this equation in particular.
+for some $a,b,c,d,e \in K$. This is a simple definition but it doesn't give a lot of intuition and it's not obvious why we should care about solutions of this equation in particular.
 
 A more elegant definition is: an elliptic curve is a curve $E$ of genus $1$ with a distinguished point $O\in E$.
 
@@ -66,7 +66,7 @@ $$
 A + Bx + Cy + Dx^2 + Exy + Fx^3+Gy^2 = 0
 $$
 
-If either $F$ or $G$ is zero then all terms in the relation have poles at $O$ of distinct order, which is absurd. So $F,G\ne 0$ and by rescaling $x$ and $y$ we get back the Weierstrass equation.
+If either $F$ or $G$ is zero then all terms in the relation have poles at $O$ of distinct order, which is impossible. So $F,G\ne 0$ and by rescaling $x$ and $y$ we get back the Weierstrass equation.
 
 ### Group structure
 
@@ -76,7 +76,7 @@ $$
 \sigma: Div^0(E) \to E: D \mapsto P
 $$
 
-is surjective and it's kernel the set of _principal divisors_ $\\{div(f) \ \mid \ f \in K(E)^*\\}$. Therefore, $E$ is in bijection with the Picard group $Pic^0(E)$, the group $Div^0(E)$ quotiented by principal divisors. We can thus trivially put an abelian group structure on $E$ by asking that $Pic^0(E) \to E$ is a group isomorphism. Moreover this group structure coincides with the usual group law we all know and love! Additionally, this provides a clean proof that the usual group law is associative (something that only the bravest of us prove by hand).
+is surjective and it's kernel the set of _principal divisors_ $\\{div(f) \ \mid \ f \in K(E)^*\\}$. Therefore, $E$ is in bijection with the Picard group $Pic^0(E)$, the group $Div^0(E)$ quotiented by principal divisors. We can thus trivially put an abelian group structure on $E$ by asking that $Pic^0(E) \to E$ is a group isomorphism. Moreover this group structure coincides with the usual group law we all know and love! Additionally, this provides a clean proof that the usual group law is associative, something only the bravest of us prove by hand.
 
 ## Algebraic geometry codes
 
@@ -92,12 +92,15 @@ $$
 
 is well-defined (since $f$ cannot have poles at any $P_i$) and defines a [linear code](https://en.wikipedia.org/wiki/Linear_code). This construction is called an _algebraic geometry code_ or _Goppa code_.
 
-Write $\C(G)$ for the image of $ev$. The _dimension_ of this code is the dimension of $\C(G)$, which is the dimension of $\L(G)$ (i.e. $\ell(G)$) minus the dimension of $\ker(ev)$. The evaluation $ev$ vanishes at functions with zeros of order at least $1$ at every $P_i$. So $\ker(ev) = \L(G-D)$ where $D$ is the divisor $D = P_1 + \dots + P_n$. Therefore, the dimension of the code is $\ell(G) - \ell(G-D)$. By applications of Riemann-Roch, when $2g-2 < \deg G < n$ we can simplify this expression to $\deg G + 1 - g$.
+Write $\C(G)$ for the image of $ev$. The _dimension_ of this code is the dimension of $\C(G)$, which is the dimension of $\L(G)$, i.e. $\ell(G)$, minus the dimension of $\ker(ev)$
+$$ \dim \C(G) = \ell(G) - \dim \ker(ev).$$
+ The evaluation $ev$ vanishes at functions with zeros of order at least $1$ at every $P_i$. So $\ker(ev) = \L(G-D)$ where $D$ is the divisor $D = P_1 + \dots + P_n$. Therefore, the dimension of the code is $\ell(G) - \ell(G-D)$. By applications of Riemann-Roch, when $2g-2 < \deg G < n$ we can simplify this expression to 
+$$ \dim \C(G) = \deg G + 1 - g.$$
 
-Another interesting parameter of a code is it's _minimal distance_, defined as $d\left(\C(G)\right)=\min \\{\text{wt}(x)  \mid  0 \ne x \in \C(G)  \\}$, where $\text{wt}(x) = \\#\\{i \mid x_i\ne 0\\}$ is the _Hamming weight_. Fix $0\ne f \in \L(G)$ with $\text{wt}(ev(f)) = d$. Then, there are $n-d$ points $P_{i_1},\dots,P_{i_{n-d}}$ such that $f(P_{i_j})=0$. Thus, $f$ is in $\L\left(G-(P_{i_1}+\dots+P_{i_{n-d}})\right)$ and so this space has nonzero dimension. Therefore[^3],
+Another interesting parameter of a code is it's _minimal distance_, defined as $d\left(\C(G)\right)=\min \\{\text{wt}(x)  \mid  0 \ne x \in \C(G)  \\}$, where $\text{wt}(x) = \\#\\{i \mid x_i\ne 0\\}$ is the _Hamming weight_. Fix $0\ne f \in \L(G)$ with $\text{wt}(ev(f)) = d$. Then, there are $n-d$ points $P_{i_1},\dots,P_{i_{n-d}}$ such that $f(P_{i_j})=0$. Thus, $f$ is in $\L\left(G-(P_{i_1}+\dots+P_{i_{n-d}})\right)$ and so this space has nonzero dimension. Therefore[^2],
 
 $$
-\deg G-(P_{i_1}+\dots+P_{i_{n-d}}) =\deg G - n + d \geq 0,
+\deg \left( G-(P_{i_1}+\dots+P_{i_{n-d}}) \right) =\deg G - n + d \geq 0,
 $$
 
 and so $d\left(\C(G)\right) \geq n - \deg G$.
@@ -108,9 +111,9 @@ $$
 k+d = \deg G + 1 - g + d \geq \deg G + 1 - g + n - \deg G = n+1-g.
 $$
 
-This can be compared with the [Singleton bound](https://en.wikipedia.org/wiki/Singleton_bound) saying that $k+d\geq n+1$. This bound is thus achieved when $g=0$ and otherwise is off by at most $g$.
+This can be compared with the [Singleton bound](https://en.wikipedia.org/wiki/Singleton_bound) saying that $k+d\leq n+1$. This bound is thus achieved when $g=0$ and otherwise is off by at most $g$.
 
-With $g=0$, we can also recover [Reed-Solomon codes](https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction). Indeed, let $C = \mathbb{P}^1$ the projective line, and let $G = m\infty$. Then, functions in $\L(G)$ are just polynomials of degree at most $m$ and $\C(G)$ is the code given by evaluations of such polynomials at $n$ points in $\F_q.$
+With $g=0$, we also recover [Reed-Solomon codes](https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction). Indeed, let $C = \mathbb{P}^1$ the projective line, and let $G = m\infty$. Then, functions in $\L(G)$ are just polynomials of degree at most $m$ and $\C(G)$ is the code given by evaluations of such polynomials at $n$ points in $\F_q.$
 
 Therefore algebraic geometry codes can be seen as a generalization of Reed-Solomon codes. One advantage they have on the latter is that Reed-Solomon codes require $q\geq n$ while for algebraic geometry codes, some curves have more than $q$ points and thus can use $n > q$. Here is an example:
 
@@ -126,13 +129,13 @@ So with $q=7^2$ and the curve defined by $x^8 + y^8 = z^8$, we get $g=21$ and $n
 
 ## ECFFT Part 2
 
-In [ECFFT Part 1](https://arxiv.org/abs/2107.08473), the authors (Ben-Sasson, Carmon, Kopparty and Levit) described a way to generalize FFTs to arbitrary fields. In their recent article [ECFFT Part 2](https://eccc.weizmann.ac.il/report/2022/110/), they generalize this even further and describe an end-to-end STARK-like proving system over arbitrary fields.
+In [ECFFT Part 1](https://arxiv.org/abs/2107.08473), the authors (Ben-Sasson, Carmon, Kopparty and Levit) described a way to generalize FFTs to arbitrary fields. In their following paper [ECFFT Part 2](https://eccc.weizmann.ac.il/report/2022/110/), they generalize this even further and describe an end-to-end STARK-like proving system over arbitrary fields.
 
 The recipe for STARK-like systems looks roughly like this
 
 1. Start with a $n\times k$-table $T$ for which some constraint polynomial $C$ vanishes on every row.
 2. Interpolate the columns on a domain $H$ to get polynomials $f_1(x),\dots,f_k(x)$.
-3. The polynomial $C(\text{columns})$ vanishes on $H$, so we can compute a quotient polynomial with $Z_H(x)$ the vanishing polynomial of $H$.
+3. The polynomial $C(f_1(x),\dots,f_k(x))$ vanishes on $H$, so we can its quotient with $Z_H(x)$, the vanishing polynomial over $H$.
 4. Use polynomial commitments to succinctly prove that the quotient polynomial is computed correctly.
 
 For fields with high $2$-adicity, step 2 can be performed efficiently using FFTs. For arbitrary fields, one can use the ECFFT algorithm where the domain $H$ corresponds to a subgroup of an elliptic curve over the field.
@@ -153,9 +156,9 @@ These can be used for SNARKs to transfer an instance over a small field $\F_q$ w
 
 Let $C$ be a curve over $\F_q$ of genus $g$, with $G$, $P_1,\dots,P_n$ and $ev$ like in our discussion of algebraic geometry code. Further assume that the dimension if the code is $n$, i.e., $ev$ is surjective. By Riemann-Roch, this happens for example when $\deg G = k + 2g - 1$. Finally, let $R$ be a point of $C$ over the extension field $F_{q^m}$, with $m > 2\deg G$. Then a $(n, m)$-RMFE can be constructed as follows.
 
-- Let $W \subseteq \L(G)$ be a subspace such that $\left.ev\right|_W$ is an isomorphism.
-- Let $\tau : \L(2G) \to \F_{q^m}$ be the map $f \mapsto f(R)$. It is injective since $m > 2\deg G$ so that $f$... TODO
+- Let $W \subseteq \L(G)$ be a subspace such that $\left.ev\right|_W$ is an isomorphism between $W$ and $\F_q^n$.
+- Let $\phi: ev(W)=\F_q^n \to \F_{q^m}$ be the function given by evaluation at $R$.
+- We can construct an inverse $\psi: \F_{q^m} \to \F_q^n$ such that $(\phi, \psi)$ form a RMFE.
 
 [^1]: If you don't know what that means, just think _elliptic curve_ or even _Riemann surface_.
-[^2]: This is analogous to the complex analysis theorem ...
-[^3]: Here we use the fact that $\deg D < 0 \implies \ell(D)=0$, i.e., a function without pole is constant.
+[^2]: Here we use the fact that $\deg D < 0 \implies \ell(D)=0$.
