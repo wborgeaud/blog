@@ -36,7 +36,11 @@ It is easy to see that MCCCS is equivalent to CCS by flattening/unflattening the
 
 ## Proving system for MCCCS
 
-The *SuperSpartan* proving system can easily be modified to accommodate MCCCS. The only difference is that the prover commits to all MLE of the columns and these commitments are all opened at the point $r_y$ in the protocol. 
+The *SuperSpartan* proving system can easily be modified to accommodate MCCCS. The only difference is that the prover commits to all MLE $\widetilde{Z} _j(X)$ of the columns and then equation (14) in [STW23] becomes
+$$
+0 = \sum _{a\in \\{0,1\\}^{\log m}} \widetilde{\text{eq}}(\tau, a)\cdot \sum _{i=0}^{q-1}c _i\cdot \prod _{j\in S _i}\left(\sum _{y\in \\{0,1\\}^{\log n}} \widetilde{M} _{j}(a,y)\widetilde{Z} _{c(j)}(y)\right),
+$$
+which can be proved with multiple calls to the sumcheck protocol.
 
 ## AIR as a MCCCS
 The AIR arithmetization is shown to be a special case of CCS in [STW23]. We show here that AIR can also be seen as a MCCCS with a very simple transformation.
@@ -149,7 +153,7 @@ where $\tau\in \mathbb{F}^{\log m}$ is a random vector. This can be proved using
 ## $\widetilde{\text{next}}$ and higher order shifts
 The function $\widetilde{next}(x,y)$ is described in section 5.1 of [STW23]. It is based on the following algorithm to check that $y=x+1$ using little-endian bit decomposition.
 
-Let $x_k=0$ be the first $0$ bit of $x$, so that $$x=1\dots 1 0 x_{k+1}\dots x_{v-1}.$$ Then $y=x+1$ if and only if $y_i=0$ for $i<k$, $y_k=1$, and $x_i=y_i$ for all $i>k$, i.e., $$y=0\dots 0 1 x_{k+1}\dots x_{v-1}.$$
+Let $x_k=0$ be the first $0$ bit of $x$, so that the little-endian bit decomposition of $x$ is $$x=1\dots 1 0 x_{k+1}\dots x_{v-1}.$$ Then $y=x+1$ if and only if $y_i=0$ for $i<k$, $y_k=1$, and $x_i=y_i$ for all $i>k$, i.e., $$y=0\dots 0 1 x_{k+1}\dots x_{v-1}.$$
 We can check this with the multilinear polynomial
 $$g_k(x,y) = \left(\prod_{i=0}^{k-1} x_i(1-y_i)\right)(1-x_k) y_k\ \widetilde{\text{eq}}(x_{k+1},y_{k+1})\cdots \widetilde{\text{eq}}(x_{v-1},y_{v-1}).$$
 The big product checks that the first bits of $x$ are $1$ and those of $y$ are $0$, the term $(1-x_k)y_k$ checks that $x_k=0$ and $y_k=1$, and the $\widetilde{\text{eq}}$ terms check that the remaining bits are equal.
