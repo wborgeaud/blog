@@ -55,7 +55,7 @@ $$
 and thus for any $\z \in \F^k$ we have
 
 $$
-\tilde{g} _k(\z) = \sum _{\i \in \{0,1\}^k} \eq(\z, \i) \cdot \tilde{g} _{k+1}(\i, 0) \cdot \tilde{g} _{k+1}(\i,1).
+\tilde{g} _k(\z) = \sum _{\i \in \\{0,1\\}^k} \eq(\z, \i) \cdot \tilde{g} _{k+1}(\i, 0) \cdot \tilde{g} _{k+1}(\i,1).
 $$
 
 The evaluation of this sum can be proved using the sumcheck protocol. At the end of the protocol, the verifier needs to evaluate $\tilde{g}_{k+1}$ at $(\r,0)$ and $(\r, 1)$ for a random $\r \in \F^k$. 
@@ -118,7 +118,7 @@ Note that compared to GKR, the verifier cost and proof size go from quadratic in
 ## Hybrid approach
 This is the approach of [SL20, Section 6][^3], also used in Lasso[^4].
 
-We can get the best of both approaches by combining them. Fix a number $1\leq \ell \leq v$, we use the Quarks approach for the first $\ell+1$ layers $\{g _k\} _{k=0}^{\ell}$ and the GKR approach for the last $v-l$ layers $\{g _k\} _{k=\ell+1}^{v}$. Concretely, this means that in the Quarks protocol, we instead have $g(0,x)=g _{\ell}(x)$ for all $x\in \\{0,1\\}^{\ell}$, which we check by evalutating at a random value $\gamma$, $\tilde{g}(0,\gamma)=\tilde{g} _{\ell}(\gamma)$. 
+We can get the best of both approaches by combining them. Fix a number $1\leq \ell \leq v$, we use the Quarks approach for the first $\ell+1$ layers $\\{g _k\\} _{k=0}^{\ell}$ and the GKR approach for the last $v-l$ layers $\\{g _k\\} _{k=\ell+1}^{v}$. Concretely, this means that in the Quarks protocol, we instead have $g(0,x)=g _{\ell}(x)$ for all $x\in \\{0,1\\}^{\ell}$, which we check by evalutating at a random value $\gamma$, $\tilde{g}(0,\gamma)=\tilde{g} _{\ell}(\gamma)$. 
 
 The evaluation $\tilde{g} _{\ell}(\gamma)$ is computed using the GKR protocol, by reducing it to a sumcheck argument and an evaluation of $\tilde{g} _{\ell +1}$, and so on until an evaluation of $\tilde{g} _v = \tilde{f}$.
 
