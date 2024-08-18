@@ -52,7 +52,7 @@ The public input is $\com_f$ and $S$. The protocol then goes as follows:
 
 Let $z=\sum_{i=0}^{l-1}z_i2^i\in [0, 2^l)$ with $z_i\in [0,2)$ for all $i$. Using the membership proof protocol above, we get the following protocol:
 
-1. The Prover builds linear polynomials $f_i(X)$ with $f_i(0)=z_i$ for all $i\in[0,l)$ and $\sum_{i=0}^{l-1}f_i(X)\cdot 2^i = f(X)$. He then sends $\\{\com_{f_i}\\}_{i=0}^{l-1}$ to the Verifier, and set $\com_f = \prod_{i=0}^{l-1}\com_{f_i}^{2^i}$ (where we use multiplicative notation in the group).
+1. The Prover builds linear polynomials $f_i(X)$ with $f_i(0)=z_i$ for all $i\in[0,l)$ and $\sum_{i=0}^{l-1}f_i(X)\cdot 2^i = f(X)$. He then sends $\\{\com_{f_i}\\}_ {i=0}^{l-1}$ to the Verifier, and set $\com_f = \prod_{i=0}^{l-1}\com_{f_i}^{2^i}$ (where we use multiplicative notation in the group).
 2. The Verifier checks that $\com_f = \prod_{i=0}^{l-1}\com_{f_i}^{2^i}$, where $\com_f$ is the public commitment to $z$. 
 3. The Prover and Verifier run the membership proof protocol on $\\{\com_{f_i}\\}_{i=0}^{l-1}$ with $S=\\{0, 1\\}$.
 
