@@ -46,7 +46,7 @@ The public input is $\com_f$ and $S$. The protocol then goes as follows:
 
 - $f(X)$ should be *randomly chosen* with the property that $f(0)=z$. Indeed, if $f(X)$ was easily guessable, e.g. $f(X)=X + z$, knowing $f(\alpha)$ would reveal $z$.
 - The protocol is sound since by the properties of the KZG commitments and the Schwartz-Zippel lemma,  except with negligible probability, there exists polynomials $f(X), h(X)$ with $\prod_{r\in S}(f(X)-r) = h(X)X$ which implies that $f(0)\in S$, i.e., $\com_f$ is a commitment to a value in $z$. QED.
-- As is, the protocol has a proof length of 3 group element: $\com_h$, $\text{open}(f(\alpha))$, $\text{open}(h(\alpha))$, and 2 field elements $f(\alpha), h(\alpha)$. The proving time is dominated by the computation of $g(X)$, and the verifier time is dominated by the product over $S$. There is maybe a way to batch the two openings to reduce the number of group elements by one.
+- As is, the protocol has a proof length of 3 group element: $\com_h$, $\text{open}(f(\alpha))$, $\text{open}(h(\alpha))$, and 2 field elements $f(\alpha), h(\alpha)$. The proving time is dominated by the computation of $g(X)$, and the verifier time is dominated by the product over $S$. There are ways to batch the two openings to reduce the number of group elements by one.
 
 # The derived range proof protocol
 
