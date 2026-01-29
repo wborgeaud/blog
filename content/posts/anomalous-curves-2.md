@@ -18,7 +18,7 @@ $$
 
 
 
-This is part two of the series on anomalous curves. Go [here]({{< ref "/anomalous-curves-1.md" >}}) for part one.
+This is part two of the series on anomalous curves. Go [here]({{< ref "anomalous-curves-1.md" >}}) for part one.
 
 Today, I'll give a sketch of the construction of Smart's attack. This attack combines two elliptic curve tools:
 

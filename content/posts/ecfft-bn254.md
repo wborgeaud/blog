@@ -12,7 +12,7 @@ $$
 
 **tl;dr:** A Rust implementation of the ECFFT here: [https://github.com/wborgeaud/ecfft-bn254](https://github.com/wborgeaud/ecfft-bn254).
 
-The [last post]({{< ref "/ecfft.md" >}}) was about the ECFFT algorithm by Eli Ben-Sasson, Dan Carmon, Swastik Kopparty and David Levit. At the end of the post, I mentioned that it would be fairly straightforward to implement the ECFFT algorithms in low-level languages like Rust by doing all the mathematical precomputations in Sage.
+The [last post]({{< ref "ecfft.md" >}}) was about the ECFFT algorithm by Eli Ben-Sasson, Dan Carmon, Swastik Kopparty and David Levit. At the end of the post, I mentioned that it would be fairly straightforward to implement the ECFFT algorithms in low-level languages like Rust by doing all the mathematical precomputations in Sage.
 
 Well I have done exactly that and implemented the EXTEND and ENTER operations in Rust for the base field of the BN254 curve. This field has order
 

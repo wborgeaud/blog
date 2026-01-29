@@ -21,7 +21,7 @@ $$
 
 
 
-This is part three of the series on anomalous curves. Go [here]({{< ref "/anomalous-curves-1.md" >}}) for part one and [here]({{< ref "/anomalous-curves-2.md" >}}) for part two.
+This is part three of the series on anomalous curves. Go [here]({{< ref "anomalous-curves-1.md" >}}) for part one and [here]({{< ref "anomalous-curves-2.md" >}}) for part two.
 
 Today, I'll prove the two missing results from the last post:
 > **Theorem (VII.2.2 in Silverman):** There is a group structure on $p\Z_p$ (that we denote $\hat{E}(p\Z_p)$) such that the map 
